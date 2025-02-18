@@ -1,7 +1,7 @@
 # **SkyWell**  
 A Weather App with History Tracking and Theme Switching  
 
-**Live Demo:** [https://skywell-livid.vercel.app/]  
+**Live Demo:** [https://skywell-livid.vercel.app/](https://skywell-livid.vercel.app/)
 ---
 ## **About**  
 SkyWell is a modern weather application built using **React**, **Redux Toolkit**, and **React Router**. It allows users to search for weather information in any city, view historical queries, and toggle between light and dark themes. The app provides a smooth user experience with animations, responsive design, and a visually appealing interface.  
