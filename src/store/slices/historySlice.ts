@@ -18,13 +18,12 @@ const initialState: HistoryState = {
   querries: loadHistoryFromLocalStorage(),
 };
 
-
 const historySlice = createSlice({
   name: "history",
   initialState,
   reducers: {
     addQuery: (state, action: PayloadAction<Query>) => {
-      state.querries.push(action.payload);
+      state.querries.unshift(action.payload);
       localStorage.setItem("history", JSON.stringify(state.querries));
     },
     clearHistory: (state) => {
