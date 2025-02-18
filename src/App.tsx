@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
 import Search from "./components/Search/Search";
 import WeatherDisplay from "./components/WeatherDisplay/WeatherDisplay";
-import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 import History from "./components/History/History";
 import Tabs from "./components/Tabs/Tabs";
 import Header from "./components/Header/Header";
@@ -24,7 +23,6 @@ function App() {
                 <Search />
                 <WeatherDisplay />
                 <Tabs />
-                {/* <ThemeToggle /> */}
               </>
             }
           />
