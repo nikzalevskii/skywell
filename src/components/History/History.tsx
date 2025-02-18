@@ -11,17 +11,25 @@ export default function History() {
     dispatch(clearHistory());
   };
 
+  if (querries.length === 0) {
+    return <div className={styles.emptyMessage}>История запросов пуста.</div>;
+  }
+
   return (
     <div className={styles.history}>
-      <h3>История запросов</h3>
+      <h2>История запросов</h2>
       <button onClick={handleClearHistory} className={styles.clearButton}>
         Очистить историю
       </button>
       <ul>
         {querries.map((query, index) => (
-          <li key={index}>
-            <p>Город: {query.city}</p>
-            <p>Дата и время: {new Date(query.timestamp).toLocaleString()}</p>
+          <li key={index} className={styles.historyItem}>
+            <div className={styles.label}>Город:</div>
+            <div className={styles.value}>{query.city}</div>
+            <div className={styles.label}>Дата:</div>
+            <div className={styles.value}>
+              {new Date(query.timestamp).toLocaleString()}
+            </div>
           </li>
         ))}
       </ul>

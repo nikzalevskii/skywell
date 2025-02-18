@@ -4,6 +4,7 @@
   align-items: center;
   padding: 10px 20px;
   color: rgb(235, 226, 226);
+  flex-wrap: wrap;
 }
 
 .header.historyActive {
@@ -31,4 +32,23 @@
 
 .navLink:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .header {
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    column-gap: 20px;
+  }
+
+  .nav {
+    margin-top: 15px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .header.historyActive {
+    color: rgb(235, 226, 226);
+  }
 }

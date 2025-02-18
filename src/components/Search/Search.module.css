@@ -88,10 +88,10 @@ input::placeholder {
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.95); /* Полупрозрачный фон */
+  background-color: rgba(255, 255, 255, 0.95); 
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для эффекта "выпадения" */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   z-index: 10;
   max-height: 200px;
   /* overflow-y: auto;  */
@@ -106,14 +106,23 @@ input::placeholder {
   font-size: 14px;
   display: flex;
   align-items: center;
-  gap: 10px; /* Расстояние между текстом и иконкой (если добавите) */
+  gap: 10px; 
 }
 
 .suggestionItem:hover {
-  background-color: #f0f0f0; /* Цвет фона при наведении */
-  transform: scale(1.02); /* Легкое увеличение */
+  background-color: #f0f0f0; 
+  transform: scale(1.02); 
 }
 
 .suggestionItem:last-child {
-  border-bottom: none; /* Убираем нижнюю границу у последнего элемента */
+  border-bottom: none; 
+}
+
+@media (max-width: 768px) {
+  .searchContainer {
+    width: 100%;
+  }
+  .button {
+    width: 100%;
+  }
 }

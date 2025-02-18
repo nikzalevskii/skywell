@@ -28,12 +28,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Расстояние между текстом и значением */
+  gap: 10px; 
 }
 
 .weather .label {
   font-weight: bold;
-  color: #333; /* Темный цвет для меток */
+  color: #333; 
 }
 
 .weather .value {
@@ -69,4 +69,11 @@
   color: red;
   font-size: 16px;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .weather {
+    width: 100%;
+    min-width: 100%;
+  }
 }
