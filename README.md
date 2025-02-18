@@ -1,50 +1,60 @@
-# React + TypeScript + Vite
+# **SkyWell**  
+A Weather App with History Tracking and Theme Switching  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Demo:** [[Insert Live Demo Link Here](https://skywell-livid.vercel.app/)]  
+---
+## **About**  
+SkyWell is a modern weather application built using **React**, **Redux Toolkit**, and **React Router**. It allows users to search for weather information in any city, view historical queries, and toggle between light and dark themes. The app provides a smooth user experience with animations, responsive design, and a visually appealing interface.  
 
-Currently, two official plugins are available:
+The project uses the **WeatherAPI** to fetch real-time weather data and includes features like background animation, query history tracking, and seamless navigation between pages.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+## **Key Features**  
+- **Weather Search**: Enter a city name to get current weather details, including temperature, humidity, wind speed, and more.  
+- **Query History**: View and manage past weather queries with timestamps.  
+- **Theme Switching**: Toggle between light and dark themes for a personalized experience.  
+- **Background Animation**: A dynamic animated background that enhances the visual appeal of the app.  
+- **Responsive Design**: Optimized for all screen sizes, ensuring a consistent experience on desktops, tablets, and mobile devices.  
+- **Error Handling**: Gracefully handles invalid inputs and API errors with user-friendly messages.  
+- **Modern Tech Stack**: Built with React, Redux Toolkit, React Router, Axios, and CSS Modules for modularity and scalability.  
 
-## Expanding the ESLint configuration
+---
+## **Technology Stack**  
+- **Frontend**:  
+  - **React**: A JavaScript library for building user interfaces.  
+  - **Redux Toolkit**: A powerful state management library for managing global application state.  
+  - **React Router**: A routing library for handling navigation and page transitions in React applications.  
+  - **Axios**: A promise-based HTTP client for making API requests.  
+  - **CSS Modules**: A CSS file in which all class names and animation names are scoped locally by default.  
+- **Styling**:  
+  - **CSS Modules**: Modular styling to avoid naming conflicts.  
+  - **Flexbox & Grid**: Modern layout techniques for responsive design.  
+  - **Animations**: Smooth transitions and effects for an engaging user experience.  
+  - **PostCSS**: A tool for transforming CSS with plugins like Autoprefixer for cross-browser compatibility.  
+- **Build Tool**:  
+  - **Vite**: A modern build tool that provides fast development server startup and optimized builds for production.  
+- **API**:  
+  - **WeatherAPI**: A real-time weather data provider used to fetch current weather information.  
+- **State Management**:  
+  - **Redux Toolkit**: Simplifies state management with features like Immer for immutable updates and Redux Thunk for async logic.  
+- **Routing**:  
+  - **React Router**: Handles dynamic routing and navigation within the app.  
+---
+## **Installation and Setup**  
+To run this project locally, follow these steps:  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### **Prerequisites**  
+- Node.js (v16 or higher)  
+- npm or yarn  
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### **Steps**  
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/your-username/skywell.git
+   cd skywell
+2. **Install Dependencies**  
+   ```bash
+   npm install
+3. **Run the Development Server**  
+   ```bash
+   npm run dev
