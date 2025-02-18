@@ -6,8 +6,14 @@ import styles from "./Search.module.css";
 import { toggleTheme } from "../../store/slices/themeSlice";
 import axios from "axios";
 import { AppDispatch, RootState } from "../../store/store";
+import { setIsCityChanged } from "../../store/slices/flagsSlice";
 
-export default function Search() {
+interface SearchProps {
+  activeTab: "3days" | "7days" | "14days"; // Принимаем activeTab
+  setActiveTab: (tab: "3days" | "7days" | "14days") => void; // Принимаем setActiveTab
+}
+
+export default function Search({ activeTab, setActiveTab }: SearchProps) {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const dispatch = useDispatch<AppDispatch>();
@@ -39,12 +45,15 @@ export default function Search() {
     if (selectedCity) {
       const query: Query = {
         city: selectedCity,
-        timestamp: new Date().toISOString(), 
+        timestamp: new Date().toISOString(),
       };
       dispatch(fetchWeather({ city: selectedCity, days: 3 }));
       dispatch(addQuery(query));
       setCity("");
       setSuggestions([]);
+      setActiveTab("3days");
+      localStorage.setItem("activeTab", "3days");
+      dispatch(setIsCityChanged(true));
     }
   };
 

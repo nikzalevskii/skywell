@@ -1,20 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import styles from "./Forecast.module.css";
-import { useEffect } from "react";
-import { fetchWeather } from "../../store/slices/weatherSlice";
 
 interface ForecastProps {
   days: number;
 }
 
 export default function Forecast({ days }: ForecastProps) {
-  const { data, forecast } = useSelector((state: RootState) => state.weather);
-  const dispatch = useDispatch<AppDispatch>();
+  const { forecast } = useSelector((state: RootState) => state.weather);
 
   function formatDayOfWeek(dateString: string) {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat("ru-RU", { weekday: "short" }).format(date); 
+    return new Intl.DateTimeFormat("ru-RU", { weekday: "short" }).format(date);
   }
 
   function formatDate(dateString: string) {
@@ -24,12 +21,6 @@ export default function Forecast({ days }: ForecastProps) {
       month: "short",
     }).format(date);
   }
-
-  useEffect(() => {
-    if (data?.location.name) {
-      dispatch(fetchWeather({ city: data.location.name, days }));
-    }
-  }, [days, dispatch, data?.location?.name]);
 
   if (!forecast) return null;
 

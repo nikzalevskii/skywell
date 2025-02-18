@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import Forecast from "../Forecast/Forecast";
 import styles from "./Tabs.module.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { fetchWeather } from "../../store/slices/weatherSlice";
+import { setIsCityChanged } from "../../store/slices/flagsSlice";
 
-export default function Tabs() {
-  const loadActiveTabFromLocalStorage = (): "3days" | "7days" | "14days" => {
-    const storedTab = localStorage.getItem("activeTab");
-    return storedTab ? (storedTab as "3days" | "7days" | "14days") : "3days";
-  };
+interface TabsProps {
+  activeTab: "3days" | "7days" | "14days";
+  setActiveTab: (tab: "3days" | "7days" | "14days") => void;
+}
 
-  const [activeTab, setActiveTab] = useState<"3days" | "7days" | "14days">(
-    loadActiveTabFromLocalStorage()
+export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const currentCity = useSelector(
+    (state: RootState) => state.weather.data?.location?.name
+  );
+  const isCityChanged = useSelector(
+    (state: RootState) => state.flags.isCityChanged
   );
 
-  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+  useEffect(() => {
+    if (currentCity && !isCityChanged) {
+      dispatch(fetchWeather({ city: currentCity, days: parseInt(activeTab) }));
+    }
+
+    if (isCityChanged) {
+      dispatch(setIsCityChanged(false));
+    }
+  }, [activeTab]);
 
   const handleTabChange = (tab: "3days" | "7days" | "14days") => {
     setActiveTab(tab);

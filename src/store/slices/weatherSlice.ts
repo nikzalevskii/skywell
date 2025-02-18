@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
 interface WeatherState {
   data: any;
@@ -23,9 +24,21 @@ const initialState: WeatherState = {
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
   async (
-    { city, days }: { city: string; days: number }, // Используем days вместо number
-    { rejectWithValue }
+    { city, days }: { city: string; days: number },
+    { getState, rejectWithValue }
   ) => {
+    const state = getState() as RootState;
+    const currentCity = state.weather.data?.location?.name;
+    const currentDays = state.weather.forecast?.forecastday?.length || 0;
+    if (
+      currentCity?.toLowerCase() === city.toLowerCase() &&
+      currentDays === days
+    ) {
+      return {
+        current: state.weather.data,
+        forecast: state.weather.forecast,
+      };
+    }
     try {
       const currentResponse = await axios.get(
         `https://api.weatherapi.com/v1/current.json?key=bb32e1f15a3a4084b80191826251702&q=${city}&aqi=no`
@@ -62,8 +75,8 @@ const weatherSlice = createSlice({
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.current;
-        state.forecast = action.payload.forecast;
+        state.data = action?.payload?.current;
+        state.forecast = action?.payload?.forecast;
       })
       .addCase(fetchWeather.rejected, (state, action) => {
         state.loading = false;
