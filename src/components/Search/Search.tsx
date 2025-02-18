@@ -13,7 +13,7 @@ interface SearchProps {
   setActiveTab: (tab: "3days" | "7days" | "14days") => void; // Принимаем setActiveTab
 }
 
-export default function Search({ activeTab, setActiveTab }: SearchProps) {
+export default function Search({ setActiveTab }: SearchProps) {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const dispatch = useDispatch<AppDispatch>();
