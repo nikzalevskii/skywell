@@ -13,11 +13,19 @@
 }
 
 .search.light {
-  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  background: linear-gradient(
+    135deg,
+    rgba(109, 213, 237, 0.6),
+    rgba(33, 147, 176, 0.6)
+  );
 }
 
 .search.dark {
-  background: linear-gradient(135deg, #616fcd, #6b47e0);
+  background: linear-gradient(
+    135deg,
+    rgba(97, 111, 205, 0.6),
+    rgba(107, 71, 224, 0.6)
+  );
 }
 
 .searchContainer {
@@ -47,7 +55,7 @@ input::placeholder {
   border-radius: 8px;
   cursor: pointer;
   background-color: #fff;
-  
+
   font-weight: bold;
   transition: background-color 0.3s, transform 0.3s;
   width: 50%;
@@ -62,15 +70,14 @@ input::placeholder {
 }
 
 .button:hover {
-  /* background-color: #2193b0; */
   color: #fff;
   transform: scale(1.05);
 }
 .button.light:hover {
-  background-color: #2193b0;
+  background-color: rgba(33, 147, 176, 1);
 }
 .button.dark:hover {
-  background-color: #211270;
+  background-color: rgba(33, 18, 112, 1);
 }
 
 .suggestions {

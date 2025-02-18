@@ -10,18 +10,20 @@
 .history li {
   padding: 5px;
   border-bottom: 1px solid #ccc;
+  font-weight: bold;
 }
 
 .clearButton {
-  padding: 5px 10px;
-  background-color: #ff4d4d; 
+  padding: 10px 15px;
+  background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .clearButton:hover {
-  background-color: #cc0000; 
+  background-color: #cc0000;
 }

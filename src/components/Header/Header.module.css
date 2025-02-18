@@ -3,9 +3,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  /* background-color: #007bff; */
-  /* background-color: rgba(156, 228, 237, 0.8); */
-  color: rgb(31, 24, 24);
+  color: rgb(235, 226, 226);
+}
+
+.header.historyActive {
+  color: black;
 }
 
 .logo {

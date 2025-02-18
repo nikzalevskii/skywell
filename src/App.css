@@ -3,19 +3,31 @@
   padding: 20px;
   min-height: 100vh;
   transition: background-color 0.3s, color 0.3s;
-  background-image: url('/path-to-your-background.jpg'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+    url("/public/sky_2.jpg");
+  /* background-image: url("/public/sky_2.jpg"); */
+  background-size: cover; /* Изображение покрывает весь экран */
+  background-repeat: repeat-x;
+  background-position: 0 center;
+  /* animation: moveBackground 100s linear infinite; */
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0 center; /* Начальная позиция */
+  }
+  to {
+    background-position: -100% center; /* Конечная позиция */
+  }
 }
 
 .app.dark {
-  background-color: rgba(58, 35, 206, 0.5); 
+  background-color: rgba(58, 35, 206, 0.5);
   /* color: #fff; */
 }
 
 .app.light {
-  background-color: rgba(156, 228, 237, 0.8); 
+  background-color: rgba(156, 228, 237, 0.8);
   color: #000;
 }
 
@@ -24,7 +36,7 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.9); 
+  background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: inherit;
 }
