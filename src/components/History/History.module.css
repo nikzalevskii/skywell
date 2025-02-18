@@ -1,0 +1,27 @@
+.history {
+  margin-top: 20px;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history li {
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.clearButton {
+  padding: 5px 10px;
+  background-color: #ff4d4d; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.clearButton:hover {
+  background-color: #cc0000; 
+}

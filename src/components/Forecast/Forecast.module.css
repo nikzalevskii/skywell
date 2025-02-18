@@ -1,0 +1,73 @@
+.forecast {
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.forecast h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.forecastList {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.forecastItem {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 0 1 150px;
+  min-width: 150px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+
+.forecastItem:hover {
+  transform: scale(1.05); 
+}
+
+.dayOfWeek {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.date {
+  font-size: 14px;
+  color: #555;
+}
+
+.weatherIcon {
+  width: 50px;
+  height: 50px;
+}
+
+.temperatureLabel {
+  font-size: 12px;
+  color: #777;
+}
+
+.temperatureRange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #2193b0;
+}
+
+.maxTemp {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.minTemp {
+  font-size: 16px;
+  font-weight: bold;
+}

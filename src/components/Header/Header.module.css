@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  /* background-color: #007bff; */
+  /* background-color: rgba(156, 228, 237, 0.8); */
+  color: rgb(31, 24, 24);
+}
+
+.logo {
+  color: inherit;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
