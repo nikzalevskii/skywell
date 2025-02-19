@@ -7,25 +7,28 @@ import { toggleTheme } from "../../store/slices/themeSlice";
 import axios from "axios";
 import { AppDispatch, RootState } from "../../store/store";
 import { setIsCityChanged } from "../../store/slices/flagsSlice";
+import { TabType } from "../../types/tabs.type";
+import { TABS } from "../../constants/tabs";
+import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
+import { WEATHER_API_BASE_URL, WEATHER_API_KEY } from "../../constants/api";
 
 interface SearchProps {
-  activeTab: "3days" | "7days" | "14days"; // Принимаем activeTab
-  setActiveTab: (tab: "3days" | "7days" | "14days") => void; // Принимаем setActiveTab
+  activeTab: TabType; 
+  setActiveTab: (tab: TabType) => void; 
 }
 
 export default function Search({ setActiveTab }: SearchProps) {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-
-  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+  const isPurpleMode = useSelector((state: RootState) => state.theme.isPurpleMode);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
       if (city.length > 2) {
         axios
           .get(
-            `https://api.weatherapi.com/v1/search.json?key=bb32e1f15a3a4084b80191826251702&q=${city}`
+            `${WEATHER_API_BASE_URL}/search.json?key=${WEATHER_API_KEY}&q=${city}`
           )
           .then((response) => {
             setSuggestions(response.data);
@@ -51,15 +54,15 @@ export default function Search({ setActiveTab }: SearchProps) {
       dispatch(addQuery(query));
       setCity("");
       setSuggestions([]);
-      setActiveTab("3days");
-      localStorage.setItem("activeTab", "3days");
+      setActiveTab(TABS.THREE_DAYS);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.ACTIVE_TAB, TABS.THREE_DAYS);
       dispatch(setIsCityChanged(true));
     }
   };
 
   return (
     <div
-      className={`${styles.search} ${isDarkMode ? styles.dark : styles.light}`}
+      className={`${styles.search} ${isPurpleMode ? styles.dark : styles.light}`}
     >
       <div className={styles.searchContainer}>
         <input
@@ -87,7 +90,7 @@ export default function Search({ setActiveTab }: SearchProps) {
       <button
         onClick={() => handleSearch(city)}
         className={`${styles.button} ${
-          isDarkMode ? styles.dark : styles.light
+          isPurpleMode ? styles.dark : styles.light
         }`}
       >
         Поиск
@@ -95,7 +98,7 @@ export default function Search({ setActiveTab }: SearchProps) {
       <button
         onClick={() => dispatch(toggleTheme())}
         className={`${styles.button} ${
-          isDarkMode ? styles.dark : styles.light
+          isPurpleMode ? styles.dark : styles.light
         }`}
       >
         Cменить тему

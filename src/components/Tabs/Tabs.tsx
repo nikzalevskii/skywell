@@ -5,14 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { fetchWeather } from "../../store/slices/weatherSlice";
 import { setIsCityChanged } from "../../store/slices/flagsSlice";
+import { TabType } from "../../types/tabs.type";
+import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
+import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 
 interface TabsProps {
-  activeTab: "3days" | "7days" | "14days";
-  setActiveTab: (tab: "3days" | "7days" | "14days") => void;
+  activeTab: TabType;
+  setActiveTab: (tab: TabType) => void;
 }
 
 export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
-  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+  const isPurpleMode = useSelector(
+    (state: RootState) => state.theme.isPurpleMode
+  );
 
   const dispatch = useDispatch<AppDispatch>();
   const currentCity = useSelector(
@@ -24,7 +29,9 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
 
   useEffect(() => {
     if (currentCity && !isCityChanged) {
-      dispatch(fetchWeather({ city: currentCity, days: parseInt(activeTab) }));
+      dispatch(
+        fetchWeather({ city: currentCity, days: TAB_DAYS_MAP[activeTab] })
+      );
     }
 
     if (isCityChanged) {
@@ -32,9 +39,9 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
     }
   }, [activeTab]);
 
-  const handleTabChange = (tab: "3days" | "7days" | "14days") => {
+  const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
-    localStorage.setItem("activeTab", tab);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.ACTIVE_TAB, tab);
   };
 
   const { forecast } = useSelector((state: RootState) => state.weather);
@@ -43,26 +50,26 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
     <div className={styles.tabsContainer}>
       <div className={styles.tabs}>
         <button
-          className={`${activeTab === "3days" ? styles.active : ""} ${
-            isDarkMode ? styles.dark : styles.light
+          className={`${activeTab === TABS.THREE_DAYS ? styles.active : ""} ${
+            isPurpleMode ? styles.dark : styles.light
           }`}
-          onClick={() => handleTabChange("3days")}
+          onClick={() => handleTabChange(TABS.THREE_DAYS)}
         >
           3 дня
         </button>
         <button
-          className={`${activeTab === "7days" ? styles.active : ""} ${
-            isDarkMode ? styles.dark : styles.light
+          className={`${activeTab === TABS.SEVEN_DAYS ? styles.active : ""} ${
+            isPurpleMode ? styles.dark : styles.light
           }`}
-          onClick={() => handleTabChange("7days")}
+          onClick={() => handleTabChange(TABS.SEVEN_DAYS)}
         >
           7 дней
         </button>
         <button
-          className={`${activeTab === "14days" ? styles.active : ""} ${
-            isDarkMode ? styles.dark : styles.light
-          }`}
-          onClick={() => handleTabChange("14days")}
+          className={`${
+            activeTab === TABS.FOURTEEN_DAYS ? styles.active : ""
+          } ${isPurpleMode ? styles.dark : styles.light}`}
+          onClick={() => handleTabChange(TABS.FOURTEEN_DAYS)}
         >
           14 дней
         </button>
@@ -70,9 +77,15 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
 
       {forecast?.forecastday && (
         <div className={styles.tabContent}>
-          {activeTab === "3days" && <Forecast days={3} />}
-          {activeTab === "7days" && <Forecast days={7} />}
-          {activeTab === "14days" && <Forecast days={14} />}
+          {activeTab === TABS.THREE_DAYS && (
+            <Forecast days={TAB_DAYS_MAP[TABS.THREE_DAYS]} />
+          )}
+          {activeTab === TABS.SEVEN_DAYS && (
+            <Forecast days={TAB_DAYS_MAP[TABS.SEVEN_DAYS]} />
+          )}
+          {activeTab === TABS.FOURTEEN_DAYS && (
+            <Forecast days={TAB_DAYS_MAP[TABS.FOURTEEN_DAYS]} />
+          )}
         </div>
       )}
     </div>

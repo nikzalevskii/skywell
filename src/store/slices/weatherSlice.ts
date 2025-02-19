@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
+import { WEATHER_API_BASE_URL, WEATHER_API_KEY } from "../../constants/api";
+import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 
 interface WeatherState {
   data: any;
@@ -10,7 +12,7 @@ interface WeatherState {
 }
 
 const loadWeatherFromLocalStorage = (): any => {
-  const storedWeather = localStorage.getItem("weather");
+  const storedWeather = localStorage.getItem(LOCAL_STORAGE_KEYS.WEATHER);
   return storedWeather ? JSON.parse(storedWeather) : null;
 };
 
@@ -41,11 +43,11 @@ export const fetchWeather = createAsyncThunk(
     }
     try {
       const currentResponse = await axios.get(
-        `https://api.weatherapi.com/v1/current.json?key=bb32e1f15a3a4084b80191826251702&q=${city}&aqi=no`
+        `${WEATHER_API_BASE_URL}/current.json?key=${WEATHER_API_KEY}&q=${city}&aqi=no`
       );
 
       const forecastResponse = await axios.get(
-        `https://api.weatherapi.com/v1/forecast.json?key=bb32e1f15a3a4084b80191826251702&q=${city}&days=${days}&aqi=no`
+        `${WEATHER_API_BASE_URL}/forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=${days}&aqi=no`
       );
       const weatherData = {
         current: currentResponse.data,

@@ -4,22 +4,12 @@
   min-height: 100vh;
   transition: background-color 0.3s, color 0.3s;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
-    url("/sky_2.jpg");
-  /* background-image: url("/public/sky_2.jpg"); */
-  background-size: cover; /* Изображение покрывает весь экран */
+    url("/sky.jpg");
+  background-size: cover; 
   background-repeat: repeat-x;
   background-position: 0 center;
-  /* animation: moveBackground 100s linear infinite; */
 }
 
-@keyframes moveBackground {
-  from {
-    background-position: 0 center; /* Начальная позиция */
-  }
-  to {
-    background-position: -100% center; /* Конечная позиция */
-  }
-}
 
 .app.dark {
   background-color: rgba(58, 35, 206, 0.5);

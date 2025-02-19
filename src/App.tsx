@@ -8,15 +8,21 @@ import Tabs from "./components/Tabs/Tabs";
 import Header from "./components/Header/Header";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
+import { APP_THEME_CLASS } from "./constants/theme";
+import { TabType } from "./types/tabs.type";
+import { TABS } from "./constants/tabs";
+import { LOCAL_STORAGE_KEYS } from "./constants/localStorageKeys";
 
 function App() {
-  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
-  const loadActiveTabFromLocalStorage = (): "3days" | "7days" | "14days" => {
-    const storedTab = localStorage.getItem("activeTab");
-    return storedTab ? (storedTab as "3days" | "7days" | "14days") : "3days";
+  const isPurpleMode = useSelector(
+    (state: RootState) => state.theme.isPurpleMode
+  );
+  const loadActiveTabFromLocalStorage = (): TabType => {
+    const storedTab = localStorage.getItem(LOCAL_STORAGE_KEYS.ACTIVE_TAB);
+    return storedTab ? (storedTab as TabType) : TABS.THREE_DAYS;
   };
 
-  const [activeTab, setActiveTab] = useState<"3days" | "7days" | "14days">(
+  const [activeTab, setActiveTab] = useState<TabType>(
     loadActiveTabFromLocalStorage()
   );
 
@@ -24,7 +30,11 @@ function App() {
     <BrowserRouter
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
-      <div className={`app ${isDarkMode ? "dark" : "light"}`}>
+      <div
+        className={`app ${
+          isPurpleMode ? APP_THEME_CLASS.PURPLE : APP_THEME_CLASS.LAGOON
+        }`}
+      >
         <Header />
         <Routes>
           <Route

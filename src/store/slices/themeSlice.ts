@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ThemeState {
-  isDarkMode: boolean;
+  isPurpleMode: boolean;
 }
 
 const initialState: ThemeState = {
-  isDarkMode: false,
+  isPurpleMode: false,
 };
 
 const themeSlice = createSlice({
@@ -13,7 +13,7 @@ const themeSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state) => {
-      state.isDarkMode = !state.isDarkMode;
+      state.isPurpleMode = !state.isPurpleMode;
     },
   },
 });

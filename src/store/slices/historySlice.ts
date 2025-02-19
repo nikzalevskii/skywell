@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 
 export interface Query {
   city: string;
@@ -10,7 +11,7 @@ interface HistoryState {
 }
 
 const loadHistoryFromLocalStorage = (): Query[] => {
-  const storedHistory = localStorage.getItem("history");
+  const storedHistory = localStorage.getItem(LOCAL_STORAGE_KEYS.HISTORY);
   return storedHistory ? JSON.parse(storedHistory) : [];
 };
 
@@ -24,11 +25,11 @@ const historySlice = createSlice({
   reducers: {
     addQuery: (state, action: PayloadAction<Query>) => {
       state.querries.unshift(action.payload);
-      localStorage.setItem("history", JSON.stringify(state.querries));
+      localStorage.setItem(LOCAL_STORAGE_KEYS.HISTORY, JSON.stringify(state.querries));
     },
     clearHistory: (state) => {
       state.querries = [];
-      localStorage.removeItem("history");
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.HISTORY);
     },
   },
 });
