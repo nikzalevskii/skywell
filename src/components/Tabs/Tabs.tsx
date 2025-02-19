@@ -8,6 +8,7 @@ import { setIsCityChanged } from "../../store/slices/flagsSlice";
 import { TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
+import Loader from "../Loader/Loader";
 
 interface TabsProps {
   activeTab: TabType;
@@ -25,6 +26,9 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
   );
   const isCityChanged = useSelector(
     (state: RootState) => state.flags.isCityChanged
+  );
+  const { forecast, loading } = useSelector(
+    (state: RootState) => state.weather
   );
 
   useEffect(() => {
@@ -44,7 +48,9 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
     localStorage.setItem(LOCAL_STORAGE_KEYS.ACTIVE_TAB, tab);
   };
 
-  const { forecast } = useSelector((state: RootState) => state.weather);
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.tabsContainer}>

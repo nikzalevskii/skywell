@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import styles from "./Forecast.module.css";
+import Loader from "../Loader/Loader";
 
 interface ForecastProps {
   days: number;
 }
 
 export default function Forecast({ days }: ForecastProps) {
-  const { forecast } = useSelector((state: RootState) => state.weather);
+  const { forecast, loading } = useSelector((state: RootState) => state.weather);
 
   function formatDayOfWeek(dateString: string) {
     const date = new Date(dateString);
@@ -20,6 +21,10 @@ export default function Forecast({ days }: ForecastProps) {
       day: "numeric",
       month: "short",
     }).format(date);
+  }
+
+  if (loading) {
+    return <Loader />;
   }
 
   if (!forecast) return null;
