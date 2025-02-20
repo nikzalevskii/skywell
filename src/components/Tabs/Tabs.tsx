@@ -23,18 +23,21 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
   const currentCity = useSelector(
     (state: RootState) => state.weather.data?.location?.name
   );
+
+  const isTabChangedBySearch = useSelector(
+    (state: RootState) => state.flags.isTabChangedBySearch
+  );
+
   const { forecast, loading } = useSelector(
     (state: RootState) => state.weather
   );
 
-
   useEffect(() => {
-    if (currentCity) {
+    if (currentCity && !isTabChangedBySearch) {
       dispatch(
         fetchWeather({ city: currentCity, days: TAB_DAYS_MAP[activeTab] })
       );
     }
-
   }, [activeTab]);
 
   const handleTabChange = (tab: TabType) => {

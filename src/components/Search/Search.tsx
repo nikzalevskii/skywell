@@ -9,6 +9,7 @@ import { TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 import { fetchCitySuggestions } from "../../services/weatherService";
+import { setIsTabChangedBySearch } from "../../store/slices/flagsSlice";
 
 interface SearchProps {
   activeTab: TabType;
@@ -45,6 +46,9 @@ export default function Search({ setActiveTab }: SearchProps) {
         city: selectedCity,
         timestamp: new Date().toISOString(),
       };
+
+      dispatch(setIsTabChangedBySearch(true));
+      console.log("Запрос в Search");
       dispatch(
         fetchWeather({
           city: selectedCity,
@@ -56,6 +60,9 @@ export default function Search({ setActiveTab }: SearchProps) {
       setSuggestions([]);
       setActiveTab(TABS.THREE_DAYS);
       localStorage.setItem(LOCAL_STORAGE_KEYS.ACTIVE_TAB, TABS.THREE_DAYS);
+      setTimeout(() => {
+        dispatch(setIsTabChangedBySearch(false));
+      }, 0);
     }
   };
 
