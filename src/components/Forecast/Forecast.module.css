@@ -193,6 +193,7 @@
 
     .temperatureLabel {
       font-size: 6px;
+      margin: 2px 0;
     }
 
     .temperatureRange {
@@ -233,7 +234,7 @@
     }
 
     .temperatureLabel {
-      font-size: 4px;
+      font-size: 5px;
     }
 
     .temperatureRange {
