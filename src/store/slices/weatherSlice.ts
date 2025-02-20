@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { RootState } from "../store";
-import { WEATHER_API_BASE_URL, WEATHER_API_KEY } from "../../constants/api";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
+import {
+  fetchCurrentWeather,
+  fetchForecastWeather,
+} from "../../services/weatherService";
 
 interface WeatherState {
   data: any;
@@ -42,19 +44,19 @@ export const fetchWeather = createAsyncThunk(
       };
     }
     try {
-      const currentResponse = await axios.get(
-        `${WEATHER_API_BASE_URL}/current.json?key=${WEATHER_API_KEY}&q=${city}&aqi=no`
-      );
-
-      const forecastResponse = await axios.get(
-        `${WEATHER_API_BASE_URL}/forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=${days}&aqi=no`
-      );
+      const [currentResponse, forecastResponse] = await Promise.all([
+        fetchCurrentWeather(city),
+        fetchForecastWeather(city, days),
+      ]);
       const weatherData = {
-        current: currentResponse.data,
-        forecast: forecastResponse.data.forecast,
+        current: currentResponse,
+        forecast: forecastResponse,
       };
 
-      localStorage.setItem(LOCAL_STORAGE_KEYS.WEATHER, JSON.stringify(weatherData));
+      localStorage.setItem(
+        LOCAL_STORAGE_KEYS.WEATHER,
+        JSON.stringify(weatherData)
+      );
 
       return weatherData;
     } catch (error: any) {

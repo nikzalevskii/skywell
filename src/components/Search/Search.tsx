@@ -10,31 +10,29 @@ import { TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 import { WEATHER_API_BASE_URL, WEATHER_API_KEY } from "../../constants/api";
+import { fetchCitySuggestions } from "../../services/weatherService";
 
 interface SearchProps {
-  activeTab: TabType; 
-  setActiveTab: (tab: TabType) => void; 
+  activeTab: TabType;
+  setActiveTab: (tab: TabType) => void;
 }
 
 export default function Search({ setActiveTab }: SearchProps) {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const isPurpleMode = useSelector((state: RootState) => state.theme.isPurpleMode);
+  const isPurpleMode = useSelector(
+    (state: RootState) => state.theme.isPurpleMode
+  );
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
       if (city.length > 2) {
-        axios
-          .get(
-            `${WEATHER_API_BASE_URL}/search.json?key=${WEATHER_API_KEY}&q=${city}`
-          )
-          .then((response) => {
-            setSuggestions(response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching suggestions:", error);
-          });
+        fetchCitySuggestions(city)
+          .then((data) => setSuggestions(data))
+          .catch((error) =>
+            console.error("Error fetching suggestions:", error)
+          );
       } else {
         setSuggestions([]);
       }
@@ -49,7 +47,12 @@ export default function Search({ setActiveTab }: SearchProps) {
         city: selectedCity,
         timestamp: new Date().toISOString(),
       };
-      dispatch(fetchWeather({ city: selectedCity, days: TAB_DAYS_MAP[TABS.THREE_DAYS] }));
+      dispatch(
+        fetchWeather({
+          city: selectedCity,
+          days: TAB_DAYS_MAP[TABS.THREE_DAYS],
+        })
+      );
       dispatch(addQuery(query));
       setCity("");
       setSuggestions([]);
@@ -60,7 +63,9 @@ export default function Search({ setActiveTab }: SearchProps) {
 
   return (
     <div
-      className={`${styles.search} ${isPurpleMode ? styles.dark : styles.light}`}
+      className={`${styles.search} ${
+        isPurpleMode ? styles.dark : styles.light
+      }`}
     >
       <div className={styles.searchContainer}>
         <input
