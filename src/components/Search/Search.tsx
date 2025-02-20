@@ -8,7 +8,7 @@ import axios from "axios";
 import { AppDispatch, RootState } from "../../store/store";
 import { setIsCityChanged } from "../../store/slices/flagsSlice";
 import { TabType } from "../../types/tabs.type";
-import { TABS } from "../../constants/tabs";
+import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 import { WEATHER_API_BASE_URL, WEATHER_API_KEY } from "../../constants/api";
 
@@ -50,7 +50,7 @@ export default function Search({ setActiveTab }: SearchProps) {
         city: selectedCity,
         timestamp: new Date().toISOString(),
       };
-      dispatch(fetchWeather({ city: selectedCity, days: 3 }));
+      dispatch(fetchWeather({ city: selectedCity, days: TAB_DAYS_MAP[TABS.THREE_DAYS] }));
       dispatch(addQuery(query));
       setCity("");
       setSuggestions([]);

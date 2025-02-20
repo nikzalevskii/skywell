@@ -54,7 +54,7 @@ export const fetchWeather = createAsyncThunk(
         forecast: forecastResponse.data.forecast,
       };
 
-      localStorage.setItem("weather", JSON.stringify(weatherData));
+      localStorage.setItem(LOCAL_STORAGE_KEYS.WEATHER, JSON.stringify(weatherData));
 
       return weatherData;
     } catch (error: any) {
