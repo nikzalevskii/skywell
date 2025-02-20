@@ -17,8 +17,8 @@ const loadWeatherFromLocalStorage = (): any => {
 };
 
 const initialState: WeatherState = {
-  data: loadWeatherFromLocalStorage()?.current || null,
-  forecast: loadWeatherFromLocalStorage()?.forecast || null,
+  data: loadWeatherFromLocalStorage()?.current ?? null,
+  forecast: loadWeatherFromLocalStorage()?.forecast ?? null,
   loading: false,
   error: null,
 };
@@ -31,7 +31,7 @@ export const fetchWeather = createAsyncThunk(
   ) => {
     const state = getState() as RootState;
     const currentCity = state.weather.data?.location?.name;
-    const currentDays = state.weather.forecast?.forecastday?.length || 0;
+    const currentDays = state.weather.forecast?.forecastday?.length ?? 0;
     if (
       currentCity?.toLowerCase() === city.toLowerCase() &&
       currentDays === days
