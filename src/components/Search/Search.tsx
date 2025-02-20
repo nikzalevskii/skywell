@@ -4,12 +4,10 @@ import { fetchWeather } from "../../store/slices/weatherSlice";
 import { addQuery, Query } from "../../store/slices/historySlice";
 import styles from "./Search.module.css";
 import { toggleTheme } from "../../store/slices/themeSlice";
-import axios from "axios";
 import { AppDispatch, RootState } from "../../store/store";
 import { TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
-import { WEATHER_API_BASE_URL, WEATHER_API_KEY } from "../../constants/api";
 import { fetchCitySuggestions } from "../../services/weatherService";
 
 interface SearchProps {
