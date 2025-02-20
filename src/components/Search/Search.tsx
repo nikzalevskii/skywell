@@ -6,7 +6,6 @@ import styles from "./Search.module.css";
 import { toggleTheme } from "../../store/slices/themeSlice";
 import axios from "axios";
 import { AppDispatch, RootState } from "../../store/store";
-import { setIsCityChanged } from "../../store/slices/flagsSlice";
 import { TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
@@ -56,7 +55,6 @@ export default function Search({ setActiveTab }: SearchProps) {
       setSuggestions([]);
       setActiveTab(TABS.THREE_DAYS);
       localStorage.setItem(LOCAL_STORAGE_KEYS.ACTIVE_TAB, TABS.THREE_DAYS);
-      dispatch(setIsCityChanged(true));
     }
   };
 

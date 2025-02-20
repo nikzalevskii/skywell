@@ -4,7 +4,6 @@ import styles from "./Tabs.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { fetchWeather } from "../../store/slices/weatherSlice";
-import { setIsCityChanged } from "../../store/slices/flagsSlice";
 import { TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
@@ -24,23 +23,18 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
   const currentCity = useSelector(
     (state: RootState) => state.weather.data?.location?.name
   );
-  const isCityChanged = useSelector(
-    (state: RootState) => state.flags.isCityChanged
-  );
   const { forecast, loading } = useSelector(
     (state: RootState) => state.weather
   );
 
+
   useEffect(() => {
-    if (currentCity && !isCityChanged) {
+    if (currentCity) {
       dispatch(
         fetchWeather({ city: currentCity, days: TAB_DAYS_MAP[activeTab] })
       );
     }
 
-    if (isCityChanged) {
-      dispatch(setIsCityChanged(false));
-    }
   }, [activeTab]);
 
   const handleTabChange = (tab: TabType) => {
