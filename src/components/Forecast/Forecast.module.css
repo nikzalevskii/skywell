@@ -179,11 +179,11 @@
     }
 
     .dayOfWeek {
-      font-size: 10px;
+      font-size: 11px;
     }
 
     .date {
-      font-size: 8px;
+      font-size: 9px;
     }
 
     .weatherIcon {
@@ -220,11 +220,11 @@
     }
 
     .dayOfWeek {
-      font-size: 6px;
+      font-size: 9px;
     }
 
     .date {
-      font-size: 6px;
+      font-size: 7px;
     }
 
     .weatherIcon {
@@ -233,11 +233,11 @@
     }
 
     .temperatureLabel {
-      font-size: 5px;
+      font-size: 4px;
     }
 
     .temperatureRange {
-      font-size: 6px;
+      font-size: 7px;
     }
   }
 }
