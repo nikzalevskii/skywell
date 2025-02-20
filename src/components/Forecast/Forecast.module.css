@@ -10,10 +10,15 @@
 }
 
 .forecastList {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.forecastList.centered {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
 }
 
 .forecastItem {
@@ -21,17 +26,17 @@
   padding: 5px;
   border-radius: 8px;
   text-align: center;
-  flex: 0 1 150px;
-  min-width: 150px;
+  flex: 0 1 160px;
+  min-width: 40px;
+  max-width: 170px;
   font-size: 14px;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
 
-
 .forecastItem:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .dayOfWeek {
@@ -60,14 +65,179 @@
   align-items: center;
   gap: 5px;
   color: #2193b0;
+  font-size: 16px;
 }
 
 .maxTemp {
-  font-size: 16px;
   font-weight: bold;
 }
 
 .minTemp {
-  font-size: 16px;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .forecastList {
+    grid-template-columns: repeat(100px, 1fr);
+    gap: 8px;
+
+    .forecastItem {
+      min-width: 80px;
+      /* max-width: 120px;
+      font-size: 12px; */
+      padding: 2px;
+      border-radius: 8px;
+      flex: 0 1 100px;
+      font-size: 10px;
+    }
+
+    p {
+      margin: 5px 0 5px 0;
+    }
+
+    .dayOfWeek {
+      font-size: 14px;
+    }
+
+    .date {
+      font-size: 12px;
+    }
+
+    .weatherIcon {
+      width: 40px;
+      height: 40px;
+      margin: 0;
+    }
+
+    .temperatureLabel {
+      font-size: 10px;
+    }
+
+    .temperatureRange {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .forecastList {
+    grid-template-columns: repeat(70px, 1fr);
+    gap: 6px;
+
+    .forecastItem {
+      min-width: 60px;
+      max-width: 90px;
+      font-size: 8px;
+      padding: 2px;
+      border-radius: 6px;
+      flex: 0 1 70px;
+    }
+
+    p {
+      margin: 3px 0 3px 0;
+    }
+
+    .dayOfWeek {
+      font-size: 10px;
+    }
+
+    .date {
+      font-size: 8px;
+    }
+
+    .weatherIcon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .temperatureLabel {
+      font-size: 6px;
+    }
+
+    .temperatureRange {
+      font-size: 8px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .forecastList {
+    grid-template-columns: repeat(50px, 1fr);
+    gap: 4px;
+
+    .forecastItem {
+      min-width: 40px;
+      max-width: 60px;
+      font-size: 8px;
+      padding: 2px;
+      border-radius: 6px;
+      flex: 0 1 50px;
+    }
+
+    p {
+      margin: 1px 0 1px 0;
+    }
+
+    .dayOfWeek {
+      font-size: 10px;
+    }
+
+    .date {
+      font-size: 8px;
+    }
+
+    .weatherIcon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .temperatureLabel {
+      font-size: 6px;
+    }
+
+    .temperatureRange {
+      font-size: 8px;
+    }
+  }
+}
+
+@media (max-width: 395px) {
+  .forecastList {
+    grid-template-columns: repeat(37px, 1fr);
+    gap: 4px;
+
+    .forecastItem {
+      min-width: 30px;
+      max-width: 60px;
+      font-size: 8px;
+      padding: 2px;
+      border-radius: 6px;
+      flex: 0 1 38px;
+    }
+
+    p {
+      margin: 1px 0 1px 0;
+    }
+
+    .dayOfWeek {
+      font-size: 6px;
+    }
+
+    .date {
+      font-size: 6px;
+    }
+
+    .weatherIcon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .temperatureLabel {
+      font-size: 5px;
+    }
+
+    .temperatureRange {
+      font-size: 6px;
+    }
+  }
 }

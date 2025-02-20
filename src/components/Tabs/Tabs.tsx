@@ -84,13 +84,22 @@ export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
       {forecast?.forecastday && (
         <div className={styles.tabContent}>
           {activeTab === TABS.THREE_DAYS && (
-            <Forecast days={TAB_DAYS_MAP[TABS.THREE_DAYS]} />
+            <Forecast
+              days={TAB_DAYS_MAP[TABS.THREE_DAYS]}
+              activeTab={activeTab}
+            />
           )}
           {activeTab === TABS.SEVEN_DAYS && (
-            <Forecast days={TAB_DAYS_MAP[TABS.SEVEN_DAYS]} />
+            <Forecast
+              days={TAB_DAYS_MAP[TABS.SEVEN_DAYS]}
+              activeTab={activeTab}
+            />
           )}
           {activeTab === TABS.FOURTEEN_DAYS && (
-            <Forecast days={TAB_DAYS_MAP[TABS.FOURTEEN_DAYS]} />
+            <Forecast
+              days={TAB_DAYS_MAP[TABS.FOURTEEN_DAYS]}
+              activeTab={activeTab}
+            />
           )}
         </div>
       )}
