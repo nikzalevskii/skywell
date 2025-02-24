@@ -5,7 +5,7 @@ import { addQuery, Query } from "../../store/slices/historySlice";
 import styles from "./Search.module.css";
 import { toggleTheme } from "../../store/slices/themeSlice";
 import { AppDispatch, RootState } from "../../store/store";
-import { TabType } from "../../types/tabs.type";
+import { Suggestion, TabType } from "../../types/tabs.type";
 import { TAB_DAYS_MAP, TABS } from "../../constants/tabs";
 import { LOCAL_STORAGE_KEYS } from "../../constants/localStorageKeys";
 import { fetchCitySuggestions } from "../../services/weatherService";
@@ -18,7 +18,7 @@ interface SearchProps {
 
 export default function Search({ setActiveTab }: SearchProps) {
   const [city, setCity] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const dispatch = useDispatch<AppDispatch>();
   const isPurpleMode = useSelector(
     (state: RootState) => state.theme.isPurpleMode
@@ -48,7 +48,6 @@ export default function Search({ setActiveTab }: SearchProps) {
       };
 
       dispatch(setIsTabChangedBySearch(true));
-      console.log("Запрос в Search");
       dispatch(
         fetchWeather({
           city: selectedCity,

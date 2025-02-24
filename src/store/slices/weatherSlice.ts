@@ -5,10 +5,11 @@ import {
   fetchCurrentWeather,
   fetchForecastWeather,
 } from "../../services/weatherService";
+import { Forecast, WeatherData } from "../../types/tabs.type";
 
 interface WeatherState {
-  data: any;
-  forecast: any;
+  data: WeatherData | null;
+  forecast: Forecast | null;
   loading: boolean;
   error: string | null;
 }
